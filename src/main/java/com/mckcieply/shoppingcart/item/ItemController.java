@@ -26,4 +26,11 @@ public class ItemController {
         itemService.saveItem(item);
         return "addItem";
     }
+
+    @RequestMapping(value = "/")
+    public String index (Model model) {
+        model.addAttribute("item", new Item());
+        return "index";
+    }
+
 }
