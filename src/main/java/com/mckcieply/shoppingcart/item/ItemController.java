@@ -37,4 +37,10 @@ public class ItemController {
         return "index";
     }
 
+    @PostMapping("/success")
+    public String boughtFromCart(){
+
+        return "success";
+    }
+
 }

@@ -23,4 +23,9 @@ public class ItemService {
     public int getLength() {
         return itemRepository.findAll().size();
     }
+
+    public void changeQuantity(Item item, int quantity) {
+        item.setQuantity(quantity);
+        itemRepository.save(item);
+    }
 }
