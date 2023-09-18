@@ -6,7 +6,7 @@
     <!--    <link rel="stylesheet" href="css/main.css">-->
     <script src="base.js"></script>
 </head>
-<body onLoad="">
+<body onLoad="generateIDs()">
 <div class="container">
     <!--        th:action changes where its redirected-->
     <form th:method="post" th:object="${itemList}">
@@ -22,9 +22,9 @@
                 <td th:text="${item.name}"></td>
                 <td th:text="${item.price}"></td>
                 <td th:text="${item.quantity}"></td>
-                <td><input type="button" onClick="addToCart()"> Add </input></td>
-                <td id="inCart"></td>
-                <td><input type="button"> Remove </input></td>
+                <td><input type="button" onClick="changeCart(this, 'increment')" value="Add"></input></td>
+                <td class="Counter"> 0 </td>
+                <td><input type="button" onClick="changeCart(this, 'decrement')" value="Remove"></input></td>
 
         </tr>
         </table>
