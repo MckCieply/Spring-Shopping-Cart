@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Controller
 public class ItemController {
 
@@ -29,7 +31,9 @@ public class ItemController {
 
     @RequestMapping(value = "/")
     public String index (Model model) {
-        model.addAttribute("item", new Item());
+        List<Item> items = itemService.getAll();
+        model.addAttribute("itemList", items);
+        model.addAttribute("length", itemService.getLength());
         return "index";
     }
 
