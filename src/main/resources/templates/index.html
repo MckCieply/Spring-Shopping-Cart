@@ -4,16 +4,31 @@
     <meta charset="UTF-8">
     <title>Add to Stock</title>
     <!--    <link rel="stylesheet" href="css/main.css">-->
+    <script src="base.js"></script>
 </head>
-<body>
+<body onLoad="">
 <div class="container">
     <!--        th:action changes where its redirected-->
-    <form th:method="post" th:object="${item}">
-        <tr th:each="item: ${item}">
-            <td th:text="*{name}"></td>
-            <td th:text="*{price}"></td>
-            <td th:text="*{quantity}"></td>
+    <form th:method="post" th:object="${itemList}">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            <tr th:each="item: ${itemList}">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.price}"></td>
+                <td th:text="${item.quantity}"></td>
+                <td><input type="button" onClick="addToCart()"> Add </input></td>
+                <td id="inCart"></td>
+                <td><input type="button"> Remove </input></td>
+
         </tr>
+        </table>
+        <span>Found <span th:text = "${length}" id="lengthOfStock"></span> elements</span>
 <!--        <input type="text" id="name" th:field="*{name}">-->
 <!--        <br><span></span><br>-->
 <!--        <input type="number" step="0.01" min="0" id="price" th:field="*{price}">-->
