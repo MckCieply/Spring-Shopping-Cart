@@ -3,10 +3,7 @@ package com.mckcieply.shoppingcart.item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +37,7 @@ public class ItemController {
     }
 
     @PostMapping("/success")
-    public String boughtFromCart(@ModelAttribute Item item) {
+    public String boughtFromCart(@RequestBody String item) {
         System.out.println(item);
         return "success";
     }
