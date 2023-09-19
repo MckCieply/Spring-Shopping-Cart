@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -33,13 +34,14 @@ public class ItemController {
     public String index (Model model) {
         List<Item> items = itemService.getAll();
         model.addAttribute("itemList", items);
+        model.addAttribute("item", new Item());
         model.addAttribute("length", itemService.getLength());
         return "index";
     }
 
     @PostMapping("/success")
-    public String boughtFromCart(){
-
+    public String boughtFromCart(@ModelAttribute Item item) {
+        System.out.println(item);
         return "success";
     }
 
