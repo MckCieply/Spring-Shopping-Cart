@@ -9,7 +9,7 @@
 <body onLoad="generateIDs()">
 <div class="container">
     <!--        th:action changes where its redirected-->
-    <form th:method="post" th:object="${itemList}">
+    <form th:action = "success" th:method="post" th:object="${itemList}">
         <table>
             <tr>
                 <th>ID</th>
@@ -22,14 +22,14 @@
                 <td th:text="${item.name}"></td>
                 <td th:text="${item.price}"></td>
                 <td th:text="${item.quantity}"></td>
-                <td><input type="button" onClick="changeCart(this, 'increment')" value="Add"></input></td>
-                <td><input type = "text" class="Counter" value="0"> </input></td>
-                <td><input type="button" onClick="changeCart(this, 'decrement')" value="Remove"></input></td>
+                <td><input type="button" onClick="changeCart(this, 'increment')" value="Add"></td>
+                <td><input type = "text" class="Counter" value="0"></td>
+                <td><input type="button" onClick="changeCart(this, 'decrement')" value="Remove"></td>
 
         </tr>
         </table>
         <span>Found <span th:text = "${length}" id="lengthOfStock"></span> elements</span>
-        <button type="submit" class="submit-button"> Order </button>
+        <button type="submit" > Order </button>
     </form>
 </div>
 
