@@ -8,12 +8,12 @@ function generateIDs(){
 function changeCart(button, action){
     let tr = button.parentNode.parentNode;
     let td = tr.querySelector(".Counter")
-    let clicks = parseInt(td.innerText)
+    let clicks = parseInt(td.value)
 
     if(action === "increment")
         clicks += 1;
     else if(action === "decrement" && clicks > 0)
         clicks -= 1;
-    td.innerText = clicks.toString();
+    td.value = clicks.toString();
 
 };
