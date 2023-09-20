@@ -24,8 +24,15 @@ public class ItemService {
         return itemRepository.findAll().size();
     }
 
-    public void changeQuantity(Item item, int quantity) {
-        item.setQuantity(quantity);
-        itemRepository.save(item);
+    public void changeQuantity(List<Item> items, List<String> differences) {
+
+        for(Item item : items) {
+            // Converting char to int avoiding ASCII table values
+            char difference_char = differences.get(items.indexOf(item)).charAt(9);
+            int difference = Character.getNumericValue(difference_char);
+
+            item.setQuantity(item.getQuantity() - difference);
+            itemRepository.save(item);
+        }
     }
 }

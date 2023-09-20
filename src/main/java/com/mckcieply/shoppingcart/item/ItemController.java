@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -38,7 +39,10 @@ public class ItemController {
 
     @PostMapping("/success")
     public String boughtFromCart(@RequestBody String item) {
-        System.out.println(item);
+        List<Item> oldItems = itemService.getAll();
+        ArrayList<String> items = new ArrayList<String>(
+                Arrays.asList(item.split("&")));
+        itemService.changeQuantity(oldItems, items);
         return "success";
     }
 
