@@ -31,8 +31,17 @@ public class ItemService {
             char difference_char = differences.get(items.indexOf(item)).charAt(9);
             int difference = Character.getNumericValue(difference_char);
 
+            char item_id_char = differences.get(items.indexOf(item)).charAt(4);
+            int item_id = Character.getNumericValue(item_id_char);
+
+
             item.setQuantity(item.getQuantity() - difference);
             itemRepository.save(item);
+
         }
+    }
+
+    public void calculatePrice(){
+
     }
 }
