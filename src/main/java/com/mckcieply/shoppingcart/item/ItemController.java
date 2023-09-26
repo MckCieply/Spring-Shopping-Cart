@@ -1,12 +1,15 @@
 package com.mckcieply.shoppingcart.item;
 
+import com.mckcieply.shoppingcart.orderItems.OrderItems;
+import com.mckcieply.shoppingcart.orderItems.OrderItemsService;
+import com.mckcieply.shoppingcart.orders.Order;
+import com.mckcieply.shoppingcart.orders.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,6 +18,10 @@ public class ItemController {
 
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private OrderItemsService orderItemsService;
 
 
     @RequestMapping(value = "/addItem")
@@ -46,6 +53,12 @@ public class ItemController {
         itemService.changeQuantity(itemsBought, itemsInStock);
         double price = itemService.calculatePrice(itemsBought);
         model.addAttribute("price", price);
+
+        // Saving order and order items to database
+        Order submitedOrder = new Order(price, new Date());
+        orderService.saveOrder(submitedOrder);
+        orderItemsService.saveAllOrderItems(itemsBought, submitedOrder);
+
         return "success";
     }
 }
