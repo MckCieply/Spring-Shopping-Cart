@@ -39,12 +39,13 @@ public class ItemController {
     }
 
     @PostMapping("/success")
-    public String boughtFromCart(@RequestBody String item) {
+    public String boughtFromCart(@RequestBody String item, Model model) {
         List<Item> itemsInStock = itemService.getAll();
         List<Integer> quantityBought = itemService.itemsQuantityBought(item);
         HashMap<Long, Integer> itemsBought = itemService.boughtHashMap(itemsInStock, quantityBought);
         itemService.changeQuantity(itemsBought, itemsInStock);
         double price = itemService.calculatePrice(itemsBought);
+        model.addAttribute("price", price);
         return "success";
     }
 }
