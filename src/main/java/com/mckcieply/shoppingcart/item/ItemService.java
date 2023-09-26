@@ -22,6 +22,7 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
+    // Get length of list of items
     public int getLength() {
         return itemRepository.findAll().size();
     }
@@ -47,6 +48,8 @@ public class ItemService {
         }
         return boughtHashMap;
     }
+
+    // Changing quantity of items in stock based on ammount ordered
     public void changeQuantity(HashMap<Long, Integer> boughtItems, List<Item> itemsInStock) {
 
         for(Item item : itemsInStock) {
@@ -58,7 +61,15 @@ public class ItemService {
         }
     }
 
-    public void calculatePrice(){
-
+    // Calculating total price of items bought
+    public Double calculatePrice(HashMap<Long, Integer> boughtItems){
+        double totalPrice = 0;
+        for (long key : boughtItems.keySet()) {
+            Item item = itemRepository.findById(key).get();
+            totalPrice += item.getPrice() * boughtItems.get(key);
+        }
+        return totalPrice;
     }
+
+
 }

@@ -44,6 +44,7 @@ public class ItemController {
         List<Integer> quantityBought = itemService.itemsQuantityBought(item);
         HashMap<Long, Integer> itemsBought = itemService.boughtHashMap(itemsInStock, quantityBought);
         itemService.changeQuantity(itemsBought, itemsInStock);
+        double price = itemService.calculatePrice(itemsBought);
         return "success";
     }
 }
