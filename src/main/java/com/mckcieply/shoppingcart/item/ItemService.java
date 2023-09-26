@@ -3,6 +3,7 @@ package com.mckcieply.shoppingcart.item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,18 +26,24 @@ public class ItemService {
         return itemRepository.findAll().size();
     }
 
+    // Get list of quantities bought from application/html type form
+    public List <Integer> itemsQuantityBought(String fromForm){
+        String[] separatedItems = fromForm.split("&");
+        List<Integer> quantities = new ArrayList<>();
+        for (String item : separatedItems) {
+            String[] quantity = item.split("=");
+            quantities.add(Integer.parseInt(quantity[1]));
+
+        }
+        return quantities;
+    }
     // Creating hashmap to bind item id with quantity bought
-    public HashMap<Long, Integer> boughtHashMap(List<Item> itemsInStock, List<String> itemsBought) {
+    public HashMap<Long, Integer> boughtHashMap(List<Item> itemsInStock, List<Integer> itemsBought) {
         HashMap<Long, Integer> boughtHashMap = new HashMap<>();
         for(Item item : itemsInStock) {
             int index = itemsInStock.indexOf(item);
 
-            long itemId = item.getId();
-
-            char quantityChar = itemsBought.get(index).charAt(9);
-            int quantity = Character.getNumericValue(quantityChar);
-
-            boughtHashMap.put(itemId, quantity);
+            boughtHashMap.put(item.getId(), itemsBought.get(index));
         }
         return boughtHashMap;
     }
