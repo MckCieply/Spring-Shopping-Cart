@@ -27,4 +27,6 @@ public class OrderItems {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    private int quantity;
+
 }
