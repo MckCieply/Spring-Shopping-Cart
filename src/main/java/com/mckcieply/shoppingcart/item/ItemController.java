@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -29,7 +30,7 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/")
-    public String index (Model model) {
+    public String index(Model model) {
         List<Item> items = itemService.getAll();
         model.addAttribute("itemList", items);
         model.addAttribute("item", new Item());
@@ -39,11 +40,10 @@ public class ItemController {
 
     @PostMapping("/success")
     public String boughtFromCart(@RequestBody String item) {
-        List<Item> oldItems = itemService.getAll();
-        ArrayList<String> items = new ArrayList<String>(
-                Arrays.asList(item.split("&")));
-        itemService.changeQuantity(oldItems, items);
+        List<Item> itemsInStock = itemService.getAll();
+        List<Integer> quantityBought = itemService.itemsQuantityBought(item);
+        HashMap<Long, Integer> itemsBought = itemService.boughtHashMap(itemsInStock, quantityBought);
+        itemService.changeQuantity(itemsBought, itemsInStock);
         return "success";
     }
-
 }

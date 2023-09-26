@@ -47,18 +47,12 @@ public class ItemService {
         }
         return boughtHashMap;
     }
-    public void changeQuantity(List<Item> items, List<String> differences) {
+    public void changeQuantity(HashMap<Long, Integer> boughtItems, List<Item> itemsInStock) {
 
-        for(Item item : items) {
-            // Converting char to int avoiding ASCII table values
-            char difference_char = differences.get(items.indexOf(item)).charAt(9);
-            int difference = Character.getNumericValue(difference_char);
+        for(Item item : itemsInStock) {
+            long itemId = item.getId();
+            item.setQuantity(item.getQuantity() - boughtItems.get(itemId));
 
-            char item_id_char = differences.get(items.indexOf(item)).charAt(4);
-            int item_id = Character.getNumericValue(item_id_char);
-
-
-            item.setQuantity(item.getQuantity() - difference);
             itemRepository.save(item);
 
         }
