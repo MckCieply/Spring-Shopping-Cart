@@ -6,6 +6,7 @@ import com.mckcieply.shoppingcart.orders.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,5 +31,12 @@ public class OrderItemsService {
 
     public List<OrderItems> getAll() {
         return orderItemsRepository.findAll();
+    }
+
+    public List<String> getAllItems(long id){
+        List<OrderItems> orderItems = orderItemsRepository.findAllByOrderId(id);
+        System.out.println(orderItems);
+
+        return null;
     }
 }
