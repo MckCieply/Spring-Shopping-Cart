@@ -63,8 +63,8 @@ public class ItemController {
 
     @GetMapping("/submittedOrders")
     public String submittedOrders(Model model){
-        List<Order> orders = orderService.getAll();
-        model.addAttribute("orders", orders);
+        orderItemsService.createListOfOrders();
+        //model.addAttribute("orders", orders);
         return "submittedOrders";
 
     }
