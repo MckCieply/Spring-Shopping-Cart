@@ -35,8 +35,22 @@ public class OrderItemsService {
 
     public List<String> getAllItems(long id){
         List<OrderItems> orderItems = orderItemsRepository.findAllByOrderId(id);
-        System.out.println(orderItems);
+        List<String> order = new ArrayList<>();
+        //Order id
+        order.add(orderItems.get(0).getOrder().getId().toString());
+        //Items in order
+        for(OrderItems orderItem : orderItems) {
+            order.add(orderItem.getItem().getName());
+        }
+        //Date of order
+        String date = orderItems.get(0).getOrder().getDate_created().toString();
+        date = date.substring(0, date.indexOf("."));
+        order.add(date);
+        //Total price
+        order.add(orderItems.get(0).getOrder().getTotal_price().toString());
 
-        return null;
+        //System.out.println(order);
+
+        return order;
     }
 }
