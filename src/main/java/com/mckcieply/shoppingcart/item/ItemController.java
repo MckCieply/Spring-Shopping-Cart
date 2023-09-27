@@ -1,6 +1,5 @@
 package com.mckcieply.shoppingcart.item;
 
-import com.mckcieply.shoppingcart.orderItems.OrderItems;
 import com.mckcieply.shoppingcart.orderItems.OrderItemsService;
 import com.mckcieply.shoppingcart.orders.Order;
 import com.mckcieply.shoppingcart.orders.OrderService;
@@ -60,5 +59,13 @@ public class ItemController {
         orderItemsService.saveAllOrderItems(itemsBought, submitedOrder);
 
         return "success";
+    }
+
+    @GetMapping("/submittedOrders")
+    public String submittedOrders(Model model){
+        List<Order> orders = orderService.getAll();
+        model.addAttribute("orders", orders);
+        return "submittedOrders";
+
     }
 }
