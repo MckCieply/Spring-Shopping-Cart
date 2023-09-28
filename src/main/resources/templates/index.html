@@ -3,35 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Add to Stock</title>
-    <!--    <link rel="stylesheet" href="css/main.css">-->
+    <link rel="stylesheet" href="main.css">
     <script src="base.js"></script>
 </head>
 <body onLoad="generateIDs()">
-<div class="container">
-    <!--        th:action changes where its redirected-->
-    <form th:action = "success" th:method="post">
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
+    <div class="container">
+        <!--        th:action changes where its redirected-->
+        <form th:action = "success" th:method="post">
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                <tr th:each="item: ${itemList}">
+                    <td th:text="*{item.id}"></td>
+                    <td th:text="*{item.name}"></td>
+                    <td th:text="*{item.price}"></td>
+                    <td th:text="*{item.quantity}"></td>
+                    <td><input type="button" onClick="changeCart(this, 'increment')" value="Add"></td>
+                    <td><input th:field ="*{item.quantity}" type = "text" class="Counter" value="0"></td>
+                    <td><input type="button" onClick="changeCart(this, 'decrement')" value="Remove"></td>
+
             </tr>
-            <tr th:each="item: ${itemList}">
-                <td th:text="*{item.id}"></td>
-                <td th:text="*{item.name}"></td>
-                <td th:text="*{item.price}"></td>
-                <td th:text="*{item.quantity}"></td>
-                <td><input type="button" onClick="changeCart(this, 'increment')" value="Add"></td>
-                <td><input th:field ="*{item.quantity}" type = "text" class="Counter" value="0"></td>
-                <td><input type="button" onClick="changeCart(this, 'decrement')" value="Remove"></td>
-
-        </tr>
-        </table>
-        <span>Found <span th:text = "${length}" id="lengthOfStock"></span> elements</span>
-        <button type="submit" > Order </button>
-    </form>
-</div>
-
+            </table>
+            <span>Found <span th:text = "${length}" id="lengthOfStock"></span> elements</span>
+            <button type="submit" > Order </button>
+        </form>
+    </div>
 </body>
 </html>

@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h2> List of Submitted Orders </h2>
-    <table>
-        <tr>
-            <th>Order ID</th>
-            <th>Items</th>
-            <th>Order Date</th>
-            <th>Total price</th>
-        </tr>
-        <tr th:each="order: ${orders}">
-            <td th:text="${order.get(0)}"></td>
-            <td>
-                <span th:each="index : ${#numbers.sequence(1, order.size() - 3)}">
-                <span th:text="${order[index]}"></span><br></span>
-            </td>
-            <td th:text="${order.get(order.size() -2)}"></td>
-            <td th:text="${order.get(order.size() -1)}"></td>
-        </tr>
-    </table>
+    <div class="container">
+        <h2> List of Submitted Orders </h2>
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Items</th>
+                <th>Order Date</th>
+                <th>Total price</th>
+            </tr>
+            <tr th:each="order: ${orders}">
+                <td th:text="${order.get(0)}"></td>
+                <td>
+                    <span th:each="index : ${#numbers.sequence(1, order.size() - 3)}">
+                    <span th:text="${order[index]}"></span><br></span>
+                </td>
+                <td th:text="${order.get(order.size() -2)}"></td>
+                <td>
+                    <span th:text="${order.get(order.size() -1)}"></span>
+                    <span>$</span>
+
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
