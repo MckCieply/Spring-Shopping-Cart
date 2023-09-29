@@ -20,11 +20,14 @@
                 <tr th:each="item: ${itemList}">
                     <td th:text="*{item.id}"></td>
                     <td th:text="*{item.name}"></td>
-                    <td th:text="*{item.price}"></td>
+                    <td>
+                        <span th:text="*{item.price}"></span>
+                        <span><b>$</b></span>
+                    </td>
                     <td th:text="*{item.quantity}"></td>
-                    <td><input type="button" onClick="changeCart(this, 'increment')" value="Add"></td>
-                    <td><input th:field ="*{item.quantity}" type = "text" class="Counter" value="0"></td>
-                    <td><input type="button" onClick="changeCart(this, 'decrement')" value="Remove"></td>
+                    <td><input type="button" onClick="changeCart(this, 'increment')" value="Add" class="incButton"></td>
+                    <td><input th:field ="*{item.quantity}" type = "text" class="counter" value="0" disabled></td>
+                    <td><input type="button" onClick="changeCart(this, 'decrement')" value="Remove" class="decButton"></td>
 
             </tr>
             </table>
