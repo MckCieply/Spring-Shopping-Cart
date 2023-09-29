@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <form>
+            <h3>Update Product: </h3>
+            <span th:each="item: ${itemList}">
+                <input type="radio" th:value="*{item.name}" name="product">
+                <label th:text="*{item.name}"></label><br>
+
+                <span id="hiddenUpdate" hidden>
+                    <h4> Update Quantity: </h4>
+                    <input type="number" th:field="*{item.quantity}" name="quantity">
+                    <br>
+                    <h4> Update Price: </h4>
+                    <input type="number" th:field="*{item.price}" name="price">
+                </span>
+            </span>
+        </form>
+
+    </div>
+
+</body>
+</html>

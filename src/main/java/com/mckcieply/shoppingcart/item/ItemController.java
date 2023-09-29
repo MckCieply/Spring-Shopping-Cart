@@ -68,4 +68,12 @@ public class ItemController {
         return "submittedOrders";
 
     }
+
+    @GetMapping("/updateItem")
+    public String updateItem(@ModelAttribute Item item, Model model){
+        List<Item> items = itemService.getAll();
+        model.addAttribute("itemList", items);
+        model.addAttribute("item", new Item());
+        return "updateItem";
+    }
 }
