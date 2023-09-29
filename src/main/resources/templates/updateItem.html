@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <title>Update Product</title>
     <link rel="stylesheet" href="main.css">
+    <script src="base.js"></script>
 </head>
 <body>
     <div class="container">
         <form>
             <h3>Update Product: </h3>
             <span th:each="item: ${itemList}">
-                <input type="radio" th:value="*{item.name}" name="product">
+                <input type="checkbox" th:value="*{item.name}" name="product" class="toggleButton" onchange="toggleItemVisibility(this)">
                 <label th:text="*{item.name}"></label><br>
 
-                <span id="hiddenUpdate" hidden>
+                <span class="toggleSpan" style="display:none">
                     <h4> Update Quantity: </h4>
                     <input type="number" th:field="*{item.quantity}" name="quantity">
                     <br>
