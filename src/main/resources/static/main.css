@@ -4,6 +4,7 @@ body{
     font-size: larger;
 }
 .container{
+    position: relative;
     border: 2px solid #d0b8ac;
     border-radius: 15px;
     background-color: #efe5dc;
@@ -80,6 +81,13 @@ button:hover{
 .decButton:hover{
     background-color: #ff0000;
     color: white;
+}
+
+.icon{
+    position:absolute;
+    top: 0;
+    left: 0;
+    margin: 5px;
 }
 
 
