@@ -1,39 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th = "https://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add to Stock</title>
+    <title>Home Page</title>
     <link rel="stylesheet" href="main.css">
     <script src="base.js"></script>
 </head>
-<body onLoad="generateIDs()">
-    <div class="container">
-        <!--        th:action changes where its redirected-->
-        <form th:action = "success" th:method="post">
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                </tr>
-                <tr th:each="item: ${itemList}">
-                    <td th:text="*{item.id}"></td>
-                    <td th:text="*{item.name}"></td>
-                    <td>
-                        <span th:text="*{item.price}"></span>
-                        <span><b>$</b></span>
-                    </td>
-                    <td th:text="*{item.quantity}"></td>
-                    <td><input type="button" onClick="changeCart(this, 'increment')" value="Add" class="incButton"></td>
-                    <td><input th:field ="*{item.quantity}" type = "text" class="counter" value="0" disabled></td>
-                    <td><input type="button" onClick="changeCart(this, 'decrement')" value="Remove" class="decButton"></td>
-
-            </tr>
-            </table>
-            <span>Found <span th:text = "${length}" id="lengthOfStock"></span> elements</span>
-            <button type="submit" > Order </button>
-        </form>
+<body>
+    <div class = "container">
+        <h1> Welcome on Home Page</h1>
+        <h3> Of my small e-commerce'ish project</h3>
+        <h4> You can navigate to the following pages:</h4>
+        <ul>
+            <li><a href="/cart">Cart</a></li>
+            <li><a href="/addItem">Add Item</a></li>
+            <li><a href="/updateItem">Update Item</a></li>
+            <li><a href="/submittedOrders">Submitted Orders</a></li>
+        </ul>
     </div>
 </body>
 </html>

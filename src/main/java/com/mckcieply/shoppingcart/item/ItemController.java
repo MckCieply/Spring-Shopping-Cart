@@ -22,6 +22,10 @@ public class ItemController {
     @Autowired
     private OrderItemsService orderItemsService;
 
+    @RequestMapping(value = "/")
+    public String cart() {
+        return "index";
+    }
 
     @RequestMapping(value = "/addItem")
     public String addItem(Model model) {
@@ -35,13 +39,13 @@ public class ItemController {
         return "addItem";
     }
 
-    @RequestMapping(value = "/")
-    public String index(Model model) {
+    @RequestMapping(value = "/cart")
+    public String cart(Model model) {
         List<Item> items = itemService.getAll();
         model.addAttribute("itemList", items);
         model.addAttribute("item", new Item());
         model.addAttribute("length", itemService.getLength());
-        return "index";
+        return "cart";
     }
 
     @PostMapping("/success")
