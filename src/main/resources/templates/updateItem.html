@@ -9,7 +9,8 @@
 <body>
     <div class="container">
         <a href="/"><img src="home.png" class="icon" alt="Go home"></a>
-        <form>
+        <h3> Development of update function was discontinued due to technology lacks, app is not utilizing REST. </h3>
+        <form th:method="POST">
             <h3>Update Product: </h3>
             <span th:each="item: ${itemList}">
                 <input type="checkbox" th:value="*{item.name}" name="product" class="toggleButton" onchange="toggleItemVisibility(this)">
@@ -23,6 +24,7 @@
                     <input type="number" th:field="*{item.price}" name="price">
                 </span>
             </span>
+            <button type="submit" disabled> Update </button>
         </form>
 
     </div>
